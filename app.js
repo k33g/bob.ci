@@ -53,6 +53,7 @@ app.post('/ci', (req, res) => {
         let branch = req.body.ref.split("/").pop(); // perhaps an other way to get the branch name?
 
         if(branch!=="gh-pages") {
+          console.log("statuses_url". statuses_url)
 
           githubCli.postData({path:statuses_url, data:{
               state: "pending"
@@ -148,7 +149,7 @@ app.post('/ci', (req, res) => {
       // ....
       break;
   }
-  res.status(200).end()
+  res.status(200).end() // 201?
   //res.json({})
 })
 
