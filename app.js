@@ -7,7 +7,8 @@ const bodyParser = require('body-parser');
 const GitHubClient = require('./GitHubClient.js').GitHubClient;
 
 let port = process.env.EXPRESS_PORT;
-let selfUrl = process.env.URL_SERVER  //http://zeiracorp:8888
+
+let selfUrl = process.env.URL_SERVER
 
 let githubCli = new GitHubClient({
   baseUri: "http://api.github.com",
