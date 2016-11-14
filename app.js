@@ -61,7 +61,7 @@ app.post('/ci', (req, res) => {
               state: "pending"
             , description: "Hi, I'm JarvisCI :)"
             , context: "CIFaker"
-            , target_url: `${selfUrl}/ci`
+            //, target_url: `${selfUrl}/ci`
           }})
           .then(res => {
             console.log("------------------------------")
