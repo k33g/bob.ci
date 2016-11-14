@@ -1,0 +1,18 @@
+{
+  "name": "bob-ci",
+  "version": "0.0.0",
+  "private": true,
+  "author": "Philippe CHARRIERE <ph.charriere@gmail.com>",
+  "description": "A simple CI server",
+  "dependencies": {
+    "node-fetch": "^1.6.0",
+    "shelljs": "^0.7.4",
+    "uuid": "^2.0.2",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  },
+  "engines": {
+    "node": "6.4.0"
+  },
+  "main": "app.js"
+}
