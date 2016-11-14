@@ -101,7 +101,9 @@ app.post('/ci', (req, res) => {
                   , description: "Hi, I'm JarvisCI :)"
                   , context: "CIFaker"
                   , target_url: `${selfUrl}/${random_path}-stdout.log.txt` //TODOCHANGE THE URL -> env
-                }})
+                }}).catch(err => {
+                  console.log(err)
+                })
 
                 // call bot, notifiy the rocket chat bot
                 postData({path:`http://bobthebot.cleverapps.io/ci`, data: {message:`😡 tests on ${repository} 👎`}})
@@ -119,7 +121,10 @@ app.post('/ci', (req, res) => {
                   , description: "Hi, I'm JarvisCI :)"
                   , context: "CIFaker"
                   , target_url: `${selfUrl}/${random_path}-stdout.log.txt` //TODOCHANGE THE URL  -> env
-                }})
+                }}).catch(err => {
+                  console.log(err)
+                })
+
 
                 // call bot, notifiy the rocket chat bot
                 postData({path:`http://bobthebot.cleverapps.io/ci`, data: {message:`😀 tests on ${repository} 👍`}})
