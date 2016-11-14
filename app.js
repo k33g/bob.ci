@@ -54,6 +54,8 @@ app.post('/ci', (req, res) => {
 
         if(branch!=="gh-pages") {
           console.log("statuses_url", statuses_url)
+          //statuses_url /repos/k33g/bob.web/statuses/d34a0e2b6014fe4ce935c756b86635149fbbf2e5
+
 
           githubCli.postData({path:statuses_url, data:{
               state: "pending"
@@ -62,6 +64,9 @@ app.post('/ci', (req, res) => {
             , target_url: `${selfUrl}/ci`
           }})
           .then(res => {
+            console.log("------------------------------")
+            console.log(res)
+            console.log("------------------------------")
             // start building and testing
             let repository = req.body.repository.clone_url;
             let workdir = req.body.repository.name;
