@@ -101,7 +101,13 @@ app.post('/ci', (req, res) => {
                   , description: "Hi, I'm JarvisCI :)"
                   , context: "CIFaker"
                   , target_url: `${selfUrl}/${random_path}-stdout.log.txt` //TODOCHANGE THE URL -> env
-                }}).catch(err => {
+                }})
+                .then(res => {
+                  console.log("------------------------------")
+                  console.log(res)
+                  console.log("------------------------------")
+                })
+                .catch(err => {
                   console.log(err)
                 })
 
@@ -121,7 +127,13 @@ app.post('/ci', (req, res) => {
                   , description: "Hi, I'm JarvisCI :)"
                   , context: "CIFaker"
                   , target_url: `${selfUrl}/${random_path}-stdout.log.txt` //TODOCHANGE THE URL  -> env
-                }}).catch(err => {
+                }})
+                .then(res => {
+                  console.log("------------------------------")
+                  console.log(res)
+                  console.log("------------------------------")
+                })
+                .catch(err => {
                   console.log(err)
                 })
 
