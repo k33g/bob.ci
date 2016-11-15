@@ -151,7 +151,7 @@ app.post('/ci', (req, res) => {
       let action = req.body.action;
 
       //if(action=="opened") { }
-      if(action=="closed")
+      if(action=="closed") {
         // you can deploy
         let merged = req.body.pull_request !== undefined ? req.body.pull_request.merged : undefined;
         if(merged) {
