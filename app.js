@@ -7,8 +7,8 @@ const bodyParser = require('body-parser');
 const GitHubClient = require('./GitHubClient.js').GitHubClient;
 
 let port = process.env.EXPRESS_PORT;
-
 let selfUrl = process.env.URL_SERVER
+let urlBot = process.env.URL_BOT
 
 let githubCli = new GitHubClient({
   baseUri: "https://api.github.com",
@@ -130,7 +130,7 @@ app.post('/ci', (req, res) => {
 
 
                 // call bot, notifiy the rocket chat bot
-                postData({path:`http://bobthebot.cleverapps.io/ci`, data: {message:`😀 tests on ${repository} 👍`}})
+                postData({path:`${urlBot}`, data: {message:`😀 tests on ${repository} 👍`}})
 
                 // change status
               }
@@ -155,7 +155,8 @@ app.post('/ci', (req, res) => {
         // you can deploy
         let merged = req.body.pull_request !== undefined ? req.body.pull_request.merged : undefined;
         if(merged) {
-          postData({path:`http://bobthebot.cleverapps.io/ci`, data: {message:`👍 A pull request was merged! A deployment should start now...\n\n`}})
+          // notifiy the bot
+          postData({path:`${urlBot}`, data: {message:`👍 A pull request was merged! A deployment should start now...\n\n`}})
         }
       }
       break;
@@ -169,4 +170,5 @@ app.post('/ci', (req, res) => {
 
 app.listen(port)
 console.log(`🚀 CI Server is started - listening on ${port}`)
-postData({path:`http://bobthebot.cleverapps.io/ci`, data: {message:`🚀 CI Server is started - listening on ${port}\n\n`}})
+// notifiy the bot
+postData({path:`${urlBot}`, data: {message:`🚀 CI Server is started - listening on ${port}\n\n`}})
