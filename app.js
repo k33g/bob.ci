@@ -11,8 +11,8 @@ let port = process.env.EXPRESS_PORT;
 let selfUrl = process.env.URL_SERVER
 
 let githubCli = new GitHubClient({
-  baseUri: "http://api.github.com",
-  token: process.env.TOKEN_GITHUB_DOT_COM
+  baseUri: "https://api.github.com",
+  token: process.env.TOKEN_INDY_THE_BOT
 })
 
 let postData = ({path, data}) => {
@@ -53,20 +53,15 @@ app.post('/ci', (req, res) => {
         let branch = req.body.ref.split("/").pop(); // perhaps an other way to get the branch name?
 
         if(branch!=="gh-pages") {
-          console.log("statuses_url", statuses_url)
-          //statuses_url /repos/k33g/bob.web/statuses/d34a0e2b6014fe4ce935c756b86635149fbbf2e5
-
 
           githubCli.postData({path:statuses_url, data:{
               state: "pending"
             , description: "Hi, I'm JarvisCI :)"
             , context: "CIFaker"
-            //, target_url: `${selfUrl}/ci`
+            , target_url: `${selfUrl}/ci`
           }})
           .then(res => {
-            console.log("------------------------------")
-            console.log(res)
-            console.log("------------------------------")
+
             // start building and testing
             let repository = req.body.repository.clone_url;
             let workdir = req.body.repository.name;
@@ -100,12 +95,10 @@ app.post('/ci', (req, res) => {
                     state: "failure"
                   , description: "Hi, I'm JarvisCI :)"
                   , context: "CIFaker"
-                  , target_url: `${selfUrl}/${random_path}-stdout.log.txt` //TODOCHANGE THE URL -> env
+                  , target_url: `${selfUrl}/${random_path}-stdout.log.txt`
                 }})
                 .then(res => {
-                  console.log("------------------------------")
-                  console.log(res)
-                  console.log("------------------------------")
+                  // foo
                 })
                 .catch(err => {
                   console.log(err)
@@ -129,9 +122,7 @@ app.post('/ci', (req, res) => {
                   , target_url: `${selfUrl}/${random_path}-stdout.log.txt` //TODOCHANGE THE URL  -> env
                 }})
                 .then(res => {
-                  console.log("------------------------------")
-                  console.log(res)
-                  console.log("------------------------------")
+                  // foo
                 })
                 .catch(err => {
                   console.log(err)
@@ -160,7 +151,8 @@ app.post('/ci', (req, res) => {
       let action = req.body.action;
 
       //if(action=="opened") { }
-      if(action=="closed") {
+      if(action=="closed")
+        // you can deploy
         let merged = req.body.pull_request !== undefined ? req.body.pull_request.merged : undefined;
         if(merged) {
           postData({path:`http://bobthebot.cleverapps.io/ci`, data: {message:`👍 A pull request was merged! A deployment should start now...\n\n`}})
