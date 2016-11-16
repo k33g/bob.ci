@@ -42,6 +42,7 @@ app.post('/cd', (req, res) => {
   console.log(req.body);
   postData({path:`${urlBot}`, data: {message:`👏 🐼 ✨ 🍾 DEPLOY Successful!!!\n\n`}});
   console.log("#################################");
+  res.status(201).end()
 })
 
 app.post('/ci', (req, res) => {
