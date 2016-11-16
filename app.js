@@ -101,8 +101,8 @@ app.post('/ci', (req, res) => {
 
                 githubCli.postData({path:statuses_url, data:{
                     state: "failure"
-                  , description: "Hi, I'm JarvisCI :)"
-                  , context: "CIFaker"
+                  , description: "Hi, I'm BobCI :)"
+                  , context: "Tiny CI server for CleverCloud Demo"
                   , target_url: `${selfUrl}/${random_path}-stdout.log.txt`
                 }})
                 .then(res => {
