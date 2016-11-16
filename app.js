@@ -37,6 +37,13 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 app.use(express.static('clones'));
 
+app.post('/cd', (req, res) => {
+  console.log("#################################");
+  console.log(req.body);
+  postData({path:`${urlBot}`, data: {message:`👏 🐼 ✨ 🍾 DEPLOY Successful!!!\n\n`}});
+  console.log("#################################");
+})
+
 app.post('/ci', (req, res) => {
 
   let event = req.headers['x-github-event'];
